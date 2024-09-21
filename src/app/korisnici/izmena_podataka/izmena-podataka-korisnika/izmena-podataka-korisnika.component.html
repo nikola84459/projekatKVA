@@ -1,0 +1,51 @@
+<app-meni></app-meni>
+<h1 id="naslov" align="center">Izmena podataka korisnika</h1>
+<p align="center" *ngIf="greska">{{ poruka }}</p>
+
+<section fxLayoutAlign="center">
+    <form *ngFor="let k of korisnik"  class="forma"  fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center" #f="ngForm" (ngSubmit)="promeniPodatke(f)">
+        
+        <mat-form-field>
+          <input [ngModel]="k.ime"  type="text" matInput placeholder="Vaše ime" ngModel name="ime" required #inputIme="ngModel">
+          <mat-error *ngIf="inputIme.value.length == 0">Ovo polje mora biti popunjeno</mat-error>
+        </mat-form-field>
+    
+        <mat-form-field>
+            <input [ngModel]="k.prezime" type="text" matInput placeholder="Vape prezime" ngModel name="prezime" required #inputPrezime="ngModel">
+            <mat-error *ngIf="inputPrezime.value.length == 0">Ovo polje mora biti popunjeno</mat-error>
+       </mat-form-field>
+       <mat-form-field> 
+        <input [ngModel]="k.email"  type="text" matInput placeholder="Vaš email" ngModel email name="email" required #inputEmail="ngModel">
+        <mat-error *ngIf="inputEmail.hasError('required')">Ovo polje mora biti popunjeno.</mat-error>
+        <mat-error *ngIf="!inputEmail.hasError('required')">Email nije unet u ispravnom formatu.</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input [ngModel]="k.telefon"  type="text" matInput placeholder="Vaš telefon" ngModel name="telefon" required #inputTelefon="ngModel">
+          <mat-error *ngIf="inputTelefon.value.length == 0">Ovo polje mora biti popunjeno</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input [ngModel]="k.adresa"  type="text" matInput placeholder="Vaša adresa " ngModel name="adresa" required #inputAdresa="ngModel">
+          <mat-error *ngIf="inputAdresa.value.length == 0">Ovo polje mora biti popunjeno</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input [ngModel]="k.grad"  type="text" matInput placeholder="Grad" ngModel name="grad" required #inputGrad="ngModel">
+          <mat-error *ngIf="inputGrad.value.length == 0">Ovo polje mora biti popunjeno</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input [ngModel]="k.sifra" type="password" matInput placeholder="Šifra" ngModel name="sifra" required #inputSifra="ngModel">
+          <mat-hint style="color: red;" *ngIf="inputSifra.value.length < 8">Šifra mora imati minimum osam karaktera</mat-hint>
+        </mat-form-field>
+        Vaša interesovanja
+        <div fxLayout="column">
+            <mat-checkbox (change)="cekiranoInteresovanje('Sport', $event.source._checked)" [checked]="pronadjiInteresovanja('Sport')" color="primary">Sport</mat-checkbox>
+            <mat-checkbox (change)="cekiranoInteresovanje('Koncert', $event.source._checked)" [checked]="pronadjiInteresovanja('Koncert')" color="primary">Koncert</mat-checkbox>
+            <mat-checkbox (change)="cekiranoInteresovanje('Klub', $event.source._checked)" [checked]="pronadjiInteresovanja('Klub')" color="primary">Klub</mat-checkbox>
+            <mat-checkbox (change)="cekiranoInteresovanje('Film', $event.source._checked)" [checked]="pronadjiInteresovanja('Film')" color="primary">Film</mat-checkbox>
+        </div>
+        <button mat-raised-button color="primary">Potvrdi</button>
+    </form>
+    
+</section>
+<section id="dugme">
+    <button (click)="obrisiNalog()" id="dugme" mat-raised-button color="warn">Obriši nalog</button>    
+</section>

@@ -1,0 +1,22 @@
+<app-meni></app-meni>
+
+<p align="center" *ngIf="greska">{{ poruka }}</p>
+
+<mat-card *ngFor="let dogadjaj of dogadjaji" class="dogadjaji" fxLayoutGap="10px">
+    <mat-card-title><a id="title" routerLink="/izmenaPodatakaMesta/{{ dogadjaj.id }}">{{ dogadjaj.naziv }}</a></mat-card-title>
+    <img mat-card-image src="{{ dogadjaj.slika }}">
+    <mat-card-content>
+        <p>Datum: {{ dogadjaj.datum }}</p>
+        <p>Vreme: {{ dogadjaj.vreme }}</p>
+        <p>Trajanje: {{ dogadjaj.trajanje }}</p> 
+        <p>Status: {{ dogadjaj.status }}</p>
+        <p>Tip aktivnosti: {{ dogadjaj.tip_aktivnosti }}</p>
+        <p>Opis dogadjaja: {{ dogadjaj.opis }}</p>   
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="end">
+        <button mat-raised-button color="primary" routerLink="/izmenaPodatakaMesta/{{ dogadjaj.id }}">Izmeni</button>
+        <button *ngIf="dogadjaj.status == 'Otkazan'" mat-raised-button color="accent" (click)="postaviKaoDostupan(dogadjaj.id)">Postavi kao dostupan</button>
+        <button *ngIf="dogadjaj.status == 'Dostupan'" mat-raised-button color="accent"(click)="otkazivanje(dogadjaj.id)">Otkaži</button>
+        <button mat-raised-button color="warn" (click)="brisanje(dogadjaj.id)">Obriši</button>
+    </mat-card-actions>
+</mat-card>

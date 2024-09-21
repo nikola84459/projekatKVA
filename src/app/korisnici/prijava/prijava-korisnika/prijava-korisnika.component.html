@@ -1,0 +1,18 @@
+<section fxLayoutAlign="center">
+  <mat-label *ngIf="greska">{{ poruka }}</mat-label>
+</section>
+
+<section fxLayoutAlign="center">
+    <form class="forma"  fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center" #f="ngForm" (ngSubmit)="logovanje(f)">
+        <mat-form-field appearance="fill">
+          <input type="text" matInput placeholder="Vaše korisničko ime" ngModel name="kime">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <input type="password" matInput ngModel placeholder="Vaša šifra" name="sifra">
+        </mat-form-field>
+        <button mat-raised-button color="primary">Prijavi se</button>
+        <a align="center" routerLink="/registracija">Napravi nalog</a>
+  </form>
+</section>
+

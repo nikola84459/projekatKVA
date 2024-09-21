@@ -1,0 +1,59 @@
+<app-meni></app-meni>
+
+<h1 align="center" id="naslov">Izmena dogadjaja</h1>
+<p align="center" *ngIf="greska">{{ poruka }}</p>
+
+<section fxLayoutAlign="center">
+    <form *ngFor="let dogadjaj of dogadjaji" class="forma"  fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center" #f="ngForm" (ngSubmit)="promeniPodatke(f)">
+        
+        <mat-form-field>
+          <input [ngModel]="dogadjaj.naziv" type="text" matInput placeholder="Naziv dogadjaja" ngModel name="naziv" required #inputNaziv="ngModel">
+          <mat-error *ngIf="inputNaziv.value.length == 0">Ovo polje mora biti popunjeno</mat-error>      
+        </mat-form-field>
+       
+        <mat-form-field>
+            <textarea [ngModel]="dogadjaj.opis" type="text" matInput placeholder="Opis" ngModel name="opis" required #inputOpis="ngModel"></textarea>
+            <mat-error *ngIf="inputOpis.value.length == 0">Ovo polje mora biti popunjeno</mat-error>
+       </mat-form-field>
+       
+        <mat-form-field>
+          <input [ngModel]="dogadjaj.lokacija" type="text" matInput placeholder="Lokacija" ngModel name="lokacija" required #inputLokacija="ngModel">
+          <mat-error *ngIf="inputLokacija.value.length == 0">Ovo polje mora biti popunjeno</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input [ngModel]="dogadjaj.grad" type="text" matInput placeholder="Grad" ngModel name="grad"  required #inputGrad="ngModel">
+          <mat-error *ngIf="inputGrad.value.length == 0">Ovo polje mora biti popunjeno</mat-error>  
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input [ngModel]="dogadjaj.datum" type="date" matInput placeholder="Datum" ngModel name="datum" required #inputDatum="ngModel">
+            <mat-error *ngIf="inputDatum.value.length == 0">Ovo polje mora biti popunjeno</mat-error>
+          </mat-form-field> 
+          
+          <mat-form-field>
+            <input [ngModel]="dogadjaj.vreme" type="time" matInput placeholder="Vreme" ngModel name="vreme" required #inputVreme="ngModel">
+            <mat-error *ngIf="inputVreme.value.length == 0">Ovo polje mora biti popunjeno</mat-error>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <input [ngModel]="dogadjaj.trajanje" type="text" matInput placeholder="Trajanje" ngModel name="trajanje" required #inputTrajanje="ngModel">
+            <mat-error *ngIf="inputTrajanje.value.length == 0">Ovo polje mora biti popunjeno</mat-error>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <input [ngModel]="dogadjaj.slobodna_mesta" type="number" matInput placeholder="Broj slobodnih mesta" ngModel name="slobodnaMesta" required #inputSlobodnaMesta="ngModel">
+            <mat-error *ngIf="inputSlobodnaMesta.value.length == 0">Ovo polje mora biti popunjeno</mat-error>
+          </mat-form-field>
+          
+          <mat-form-field>
+            <ngx-mat-file-input [(ngModel)]="file" placeholder="Izaberite novu sliku" name="slika"></ngx-mat-file-input>
+         </mat-form-field>
+          <mat-radio-group color="primary" fxLayoutGap="10px" fxLayout="column">
+            <mat-radio-button (change)="postaviTip($event)" [checked]="dogadjaj.tip_aktivnosti == 'Sport'" value="Sport">Sport</mat-radio-button>
+            <mat-radio-button (change)="postaviTip($event)" [checked]="dogadjaj.tip_aktivnosti == 'Koncert'" value="Koncert">Koncert</mat-radio-button>
+            <mat-radio-button (change)="postaviTip($event)" [checked]="dogadjaj.tip_aktivnosti == 'Film'" value="Film">Film</mat-radio-button>
+          </mat-radio-group>
+        <button mat-raised-button color="primary">Potvrdi</button>
+  </form>
+</section>

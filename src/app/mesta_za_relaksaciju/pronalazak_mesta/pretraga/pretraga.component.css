@@ -1,0 +1,34 @@
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: lightgray;
+}
+
+.dogadjaji {
+    margin-top: 3em;
+    margin-left: 35em;
+    margin-right: 45em;
+}
+
+#title {
+    color: black;
+}
+
+.forma{
+    width: 41%;
+    margin-top: 1em;
+    margin-left: 35.5em;
+}
+
+.pretraga{
+    margin-left: 1em;
+    margin-top: 10em;
+}
+
+#poruka {
+    margin-top: 5em;
+}
+

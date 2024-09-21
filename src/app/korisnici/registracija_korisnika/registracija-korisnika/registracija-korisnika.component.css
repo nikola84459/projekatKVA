@@ -1,0 +1,17 @@
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: lightgray;
+}
+
+.forma{
+    width: 30%;
+    margin-top: 10em;
+}
+
+#naslov{
+    margin-top: 1%;
+}

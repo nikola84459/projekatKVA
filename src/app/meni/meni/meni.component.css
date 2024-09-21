@@ -1,0 +1,13 @@
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: lightgray;
+}
+
+#odjava {
+    position: fixed; 
+    right: 10px;
+}

@@ -1,0 +1,20 @@
+<app-meni></app-meni>
+
+<h3 id="nemaRezervacija" align = center *ngIf="rezervacije.length == 0">Niste napravili ni jednu rezervaciju. Da bi ste napravili rezervaciju <a style="color: blue;" routerLink="/pretraga">pretražite dogadjaje</a>.</h3>
+
+<p align="center" *ngIf="greska">{{ poruka }}</p>
+<mat-card *ngFor="let rezervacija of rezervacije" class="dogadjaji" fxLayoutGap="10px">
+    <mat-card-title>{{ rezervacija.naziv }}</mat-card-title>
+    <img mat-card-image src="{{ rezervacija.slika }}">
+    <mat-card-content>
+        <p>Datum: {{ rezervacija.datum }}</p>
+        <p>Vreme: {{ rezervacija.vreme }}</p>
+        <p>Trajanje: {{ rezervacija.trajanje }}</p> 
+        <p>Tip aktivnosti: {{ rezervacija.tip_aktivnosti }}</p>
+        <p>Opis dogadjaja: {{ rezervacija.opis }}</p>   
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="end">
+        <button routerLink="/izmenaRezervacije/{{ rezervacija.id }}" mat-raised-button color="primary">Izmeni</button>
+        <button (click)= "otkaziRezervaciju( rezervacija.id )" mat-raised-button color="warn">Otkaži</button>
+    </mat-card-actions>
+</mat-card>

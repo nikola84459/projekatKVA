@@ -1,0 +1,50 @@
+<app-meni></app-meni>
+
+<section fxLayoutAlign="column">
+    <form class="forma"  fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center" #f="ngForm" (input)="pretraziDogadjaje(f)" (ngSubmit)="pretraziDogadjaje(f)">
+        <mat-form-field appearance="fill">
+          <input type="search" matInput placeholder="Pojam za pretragu" ngModel name="pretraga">
+          <mat-hint>Pojam za pretragu može biti naziv dogadjaja ili lokacija.</mat-hint>
+        </mat-form-field>
+        <button mat-raised-button color="primary">Pretraži</button>
+    </form> 
+    </section> 
+    
+    <p id="poruka" align="center" *ngIf="greska">{{ poruka }}</p>
+
+    <section fxLayoutAlign="column">
+         <form class="pretraga" fxLayout="column" fxLayoutGap="14px" fxLayoutAlign="center" #forma="ngForm" (change)="filterPretraga(forma)">
+            <h3>Filter za pretragu</h3>
+            <mat-form-field>
+             <input type="date" matInput placeholder="Datum" ngModel name="datum">
+              </mat-form-field>
+              <mat-form-field>
+                <input type="time" matInput placeholder="Vreme" ngModel name="vreme">
+              </mat-form-field>  
+            <div fxLayout="column">
+                <mat-checkbox (change)="postaviTip('Sport', $event.source._checked)" color="primary">Sport</mat-checkbox>
+                <mat-checkbox (change)="postaviTip('Koncert', $event.source._checked)" color="primary">Koncert</mat-checkbox>
+                <mat-checkbox (change)="postaviTip('Klub', $event.source._checked)" color="primary">Klub</mat-checkbox>
+                <mat-checkbox (change)="postaviTip('Film', $event.source._checked)" color="primary">Film</mat-checkbox>
+            </div>
+             
+        </form> 
+        </section>  
+    
+
+    <section style="margin-top: -19%;" class="dogadjajiPrikaz">
+        <mat-card *ngFor="let dogadjaj of dogadjaji" class="dogadjaji" fxLayoutGap="10px">
+            <mat-card-title><a id="title" routerLink="/napraviRezervaciju/{{ dogadjaj.id }}">{{ dogadjaj.naziv }}</a></mat-card-title>
+            <img mat-card-image src="{{ dogadjaj.slika }}">
+        <mat-card-content>
+            <p>Datum: {{ dogadjaj.datum }}</p>
+            <p>Vreme: {{ dogadjaj.vreme }}</p>
+            <p>Trajanje: {{ dogadjaj.trajanje }}</p> 
+            <p>Tip aktivnosti: {{ dogadjaj.tip_aktivnosti }}</p>
+            <p>Opis dogadjaja: {{ dogadjaj.opis }}</p>   
+        </mat-card-content>
+        <mat-card-actions fxLayoutAlign="end">
+        <button mat-raised-button color="primary" routerLink="/napraviRezervaciju/{{ dogadjaj.id }}">Rezerviši</button>
+    </mat-card-actions>
+</mat-card>
+</section>

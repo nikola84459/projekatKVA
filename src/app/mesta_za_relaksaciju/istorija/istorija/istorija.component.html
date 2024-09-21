@@ -1,0 +1,17 @@
+<app-meni></app-meni>
+
+<p align="center" *ngIf="greska">{{ poruka }}</p>
+<mat-card *ngFor="let i of istorija" class="dogadjaji" fxLayoutGap="10px">
+    <mat-card-title>{{ i.naziv }}</mat-card-title>
+    <img mat-card-image src="{{ i.slika }}">
+    <mat-card-content>
+        <form class="forma"  fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center" #f="ngForm" (ngSubmit)="napisiKomentar(f, i.id)">
+            <mat-form-field appearance="fill">
+              <textarea [ngModel]="i.komentari" [disabled]="i.komentari.length > 0" type="text" matInput placeholder="Vaš komentar" ngModel name="komentar" required #inputKomentar="ngModel"></textarea>
+              <mat-error *ngIf="inputKomentar.value.length == 0">Ovo polje mora biti popunjeno</mat-error>
+            </mat-form-field>
+            <button *ngIf="i.komentari.length == 0" mat-raised-button color="primary">Potvrdi</button>
+        </form>    
+    </mat-card-content>
+    
+</mat-card>

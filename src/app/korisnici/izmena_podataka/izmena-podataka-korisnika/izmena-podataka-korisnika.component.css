@@ -1,0 +1,23 @@
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: lightgray;
+}
+
+.forma{
+    width: 30%;
+    margin-top: 10em;
+}
+
+#dugme{
+    margin-left: 24em;
+    width: 41.2em;
+    margin-top: 0.4em;
+}
+
+#naslov{
+    margin-top: 0.5%;
+}

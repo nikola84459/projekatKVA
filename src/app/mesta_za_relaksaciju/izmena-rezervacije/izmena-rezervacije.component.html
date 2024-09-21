@@ -1,0 +1,25 @@
+<app-meni></app-meni>
+
+<p align= "center" *ngIf="greska">{{ poruka }}</p>
+<mat-card *ngFor="let dogadjaj of dogadjaji"  class="dogadjaji" fxLayoutGap="10px">
+    <mat-card-title>{{ dogadjaj.naziv }}</mat-card-title>
+    <img mat-card-image src="{{ dogadjaj.slika }}">
+    <mat-card-content>
+        <p>Datum: {{ dogadjaj.datum }}</p>
+        <p>Vreme: {{ dogadjaj.vreme }}</p>
+        <p>Trajanje: {{ dogadjaj.trajanje }}</p> 
+        <p>Tip aktivnosti: {{ dogadjaj.tip_aktivnosti }}</p>
+        <p>Opis dogadjaja: {{ dogadjaj.opis }}</p>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="end">
+        <form align="end"  class="forma"  fxLayout="row" fxLayoutAlign="end" fxLayoutGap="10px" fxLayoutAlign="center" #f="ngForm" (ngSubmit)="izmeniRezervaciju(f)">
+            <mat-form-field appearance="fill">
+              <input [ngModel]="brojOsoba" type="number" matInput placeholder="Broj osoba" ngModel name="brojOsoba" value="1" required #inputBrOsoba="ngModel">
+              <mat-error *ngIf="inputBrOsoba.value.length == 0">Ovo polje mora biti popunjeno</mat-error>
+              <mat-hint style="color: red;" *ngIf="inputBrOsoba.value == 0 && inputBrOsoba.value.length != 0">Vrednost ovog polja ne može biti 0</mat-hint>
+            </mat-form-field>
+            <button mat-raised-button color="primary">Izmeni</button>
+        </form>      
+    </mat-card-actions>
+</mat-card>
+
